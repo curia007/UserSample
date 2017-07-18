@@ -111,6 +111,8 @@ class ViewController: UIViewController
         let results : String = String(data: jsonData, encoding: .utf8)!
         debugPrint("[\(#function)] results: \(results)")
         
+        resultsTextView.backgroundColor = UIColor.green
+        resultsTextView.alpha = 0.50
         resultsTextView.text = results
     }
 }
