@@ -19,6 +19,7 @@
 		C0682E0E1F1D79F20089D16A /* LocationProcessor+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0682E0D1F1D79F20089D16A /* LocationProcessor+Delegate.swift */; };
 		C0682E101F1D7A5E0089D16A /* ContactProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0682E0F1F1D7A5E0089D16A /* ContactProcessor.swift */; };
 		C0682E121F1D7A780089D16A /* JSONProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0682E111F1D7A780089D16A /* JSONProcessor.swift */; };
+		C0B47A0D1F1E56F400311F85 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B47A0C1F1E56F400311F85 /* UIViewController+Keyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		C0682E0D1F1D79F20089D16A /* LocationProcessor+Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LocationProcessor+Delegate.swift"; path = "processors/LocationProcessor+Delegate.swift"; sourceTree = "<group>"; };
 		C0682E0F1F1D7A5E0089D16A /* ContactProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactProcessor.swift; path = processors/ContactProcessor.swift; sourceTree = "<group>"; };
 		C0682E111F1D7A780089D16A /* JSONProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONProcessor.swift; path = processors/JSONProcessor.swift; sourceTree = "<group>"; };
+		C0B47A0C1F1E56F400311F85 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				C0682E0A1F1D6CBE0089D16A /* Processors */,
 				C0682DD91F1D68BC0089D16A /* AppDelegate.swift */,
 				C0682DDB1F1D68BC0089D16A /* ViewController.swift */,
+				C0B47A0C1F1E56F400311F85 /* UIViewController+Keyboard.swift */,
 				C0682DDD1F1D68BC0089D16A /* Main.storyboard */,
 				C0682DE31F1D68BC0089D16A /* Assets.xcassets */,
 				C0682DE51F1D68BC0089D16A /* LaunchScreen.storyboard */,
@@ -288,6 +291,7 @@
 				C0682DE21F1D68BC0089D16A /* UserSample.xcdatamodeld in Sources */,
 				C0682DDC1F1D68BC0089D16A /* ViewController.swift in Sources */,
 				C0682E0E1F1D79F20089D16A /* LocationProcessor+Delegate.swift in Sources */,
+				C0B47A0D1F1E56F400311F85 /* UIViewController+Keyboard.swift in Sources */,
 				C0682E101F1D7A5E0089D16A /* ContactProcessor.swift in Sources */,
 				C0682E121F1D7A780089D16A /* JSONProcessor.swift in Sources */,
 				C0682DDA1F1D68BC0089D16A /* AppDelegate.swift in Sources */,
@@ -544,6 +548,7 @@
 				C0682E031F1D68BC0089D16A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C0682E041F1D68BC0089D16A /* Build configuration list for PBXNativeTarget "UserSampleTests" */ = {
 			isa = XCConfigurationList;
@@ -552,6 +557,7 @@
 				C0682E061F1D68BC0089D16A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C0682E071F1D68BC0089D16A /* Build configuration list for PBXNativeTarget "UserSampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -560,6 +566,7 @@
 				C0682E091F1D68BC0089D16A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

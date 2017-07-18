@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     let locationProcessor: LocationProcessor = LocationProcessor()
-    let contactProcessor: ContactProcessor = ContactProcessor()
     let jsonProcessor: JSONProcessor = JSONProcessor()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

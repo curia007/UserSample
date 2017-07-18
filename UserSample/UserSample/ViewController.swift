@@ -9,8 +9,10 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController
+class ViewController: UIViewController, UITextFieldDelegate
 {
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
@@ -26,11 +28,25 @@ class ViewController: UIViewController
     var coordinate : [AnyHashable : Any] = [:]
     var address : [AnyHashable : Any] = [:]
     
+    var activeField: UITextField?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        // Do any additional setup after loading the view, typically from a nib.
+        self.hideKeyboardWhenTapped()
+        
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        addressTextField.delegate = self
+        cityTextField.delegate = self
+        stateTextField.delegate = self
+        zipCodeTextField.delegate = self
+        countryTextField.delegate = self
+        
+        registerForKeyboardNotifications()
+
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: LOCATION_ADDRESS_RETRIEVED), object: nil, queue: OperationQueue.main) { (notification) in
             let placemark: CLPlacemark = notification.object as! CLPlacemark
             debugPrint("[\(#function)] placemark: \(placemark)")
@@ -67,6 +83,11 @@ class ViewController: UIViewController
 
     }
 
+    override func viewDidDisappear(_ animated: Bool)
+    {
+        deregisterFromKeyboardNotifications()
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -114,6 +135,74 @@ class ViewController: UIViewController
         resultsTextView.backgroundColor = UIColor.green
         resultsTextView.alpha = 0.50
         resultsTextView.text = results
+    }
+    
+    // MARK: - Keyboard functions
+    
+    func registerForKeyboardNotifications(){
+        //Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        //Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWasShown(notification: NSNotification){
+        //Need to calculate keyboard exact size due to Apple suggestions
+        self.scrollView.isScrollEnabled = true
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
+        
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        if let activeField = self.activeField {
+            if (!aRect.contains(activeField.frame.origin)){
+                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
+            }
+        }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        //Once keyboard disappears, restore original positions
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        self.view.endEditing(true)
+        self.scrollView.isScrollEnabled = false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        activeField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField){
+        activeField = nil
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        // Try to find next responder
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField
+        {
+            nextField.becomeFirstResponder()
+        }
+        else
+        {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+        }
+        // Do not add a line break
+        return false
     }
 }
 
