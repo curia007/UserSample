@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 
+public let LOCATION_ADDRESS_RETRIEVED: String = "LOCATION_ADDRESS_RETRIEVED"
+
 class LocationProcessor : NSObject, CLLocationManagerDelegate
 {
 
@@ -46,4 +48,12 @@ class LocationProcessor : NSObject, CLLocationManagerDelegate
         }
     }
     
+    func stopProcessor()
+    {
+        if (isLocationServicesEnabled)
+        {
+            locationManager.stopUpdatingLocation()
+        }
+    }
+
 }

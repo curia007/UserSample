@@ -29,6 +29,8 @@ extension LocationProcessor
                     let placemark: CLPlacemark = (placemarks?.first)!
                     
                     debugPrint("[\(#function)] \(String(describing: placemark.addressDictionary))")
+                    
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: LOCATION_ADDRESS_RETRIEVED), object: placemark)
                 }
                 else
                 {

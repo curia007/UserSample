@@ -15,4 +15,18 @@ class JSONProcessor
         
     }
     
+    func generateJSON(_ entities: [Any]) -> Data?
+    {
+        
+        do {
+            let jsonData: Data = try JSONSerialization.data(withJSONObject: entities, options: .prettyPrinted)
+            return jsonData
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+        
+        return nil
+    }
+    
 }

@@ -9,6 +9,8 @@
 import UIKit
 import Contacts
 
+public let CONTACT_ADDRESS_RETRIEVED: String = "CONTACT_ADDRESS_RETRIEVED"
+
 class ContactProcessor
 {
     fileprivate let contactStore: CNContactStore = CNContactStore()
