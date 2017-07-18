@@ -24,11 +24,13 @@ class ViewController: UIViewController, UITextFieldDelegate
     
     @IBOutlet weak var submitButton: UIButton!
  
-    var json: [Any] = []
-    var coordinate : [AnyHashable : Any] = [:]
-    var address : [AnyHashable : Any] = [:]
+    fileprivate var json: [Any] = []
+    fileprivate var coordinate : [AnyHashable : Any] = [:]
+    fileprivate var address : [AnyHashable : Any] = [:]
     
-    var activeField: UITextField?
+    fileprivate var activeField: UITextField?
+    
+    fileprivate let services: GenericServices = GenericServices()
     
     override func viewDidLoad()
     {
@@ -135,6 +137,9 @@ class ViewController: UIViewController, UITextFieldDelegate
         resultsTextView.backgroundColor = UIColor.green
         resultsTextView.alpha = 0.50
         resultsTextView.text = results
+        
+        // Generic Service commented out, since the service doesn't exist
+        //services.callService(jsonData)
     }
     
     // MARK: - Keyboard functions
